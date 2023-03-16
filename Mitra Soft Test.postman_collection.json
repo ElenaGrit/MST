@@ -1,0 +1,427 @@
+{
+	"info": {
+		"_postman_id": "d922a0f9-4d45-4980-9a81-8a777202b6ed",
+		"name": "MST",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23829390"
+	},
+	"item": [
+		{
+			"name": "1. List Users",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "b18edbc17dc14d9b2deb9f3faacc72982bd17fe40b3e4b31cf43c4b5d3d568bc",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://gorest.co.in/public/v2/users?id=45331",
+					"protocol": "https",
+					"host": [
+						"gorest",
+						"co",
+						"in"
+					],
+					"path": [
+						"public",
+						"v2",
+						"users"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "test@test.ru",
+							"disabled": true
+						},
+						{
+							"key": "id",
+							"value": "45331"
+						}
+					]
+				},
+				"description": "Get запрос. Получение списка пользователей.\n\nСтатус ответа 200\n\nВ теле ответа содержится список, состоящий из 10 пользователей с указанием полей: \"id\", \"name\", \"email\", \"gender\", \"status\""
+			},
+			"response": []
+		},
+		{
+			"name": "2. List Users Page 12",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "8ab017e10a1c46a8bc210e80b3290a785060a4d3574fd83772cc0d2eed0df905",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://gorest.co.in/public/v2/users?page=12",
+					"protocol": "https",
+					"host": [
+						"gorest",
+						"co",
+						"in"
+					],
+					"path": [
+						"public",
+						"v2",
+						"users"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "12"
+						}
+					]
+				},
+				"description": "1\\. Get запрос. Получение списка пользователей.\n\nСтатус ответа 200\n\nВ теле ответа список пользователей с указанием полей: \"id\", \"name\", \"email\", \"gender\", \"status\"\n\n2\\. Модификация Get запроса. Получение списка пользователей - страница 12.  \nСтатус ответа 200  \nВ теле ответа список пользователей - страница 12.\n\n3\\. Отличие запросов в том, что в первом случае выводится первая страница пользователей, поскольку не указан номер страницы, во втором случае выводится список пользователей на странице 12.\n\nУзнать номер страницы можно из вкладки заголовков ответа (Key: x-links-current)"
+			},
+			"response": []
+		},
+		{
+			"name": "4. Post Empty Request Body",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "8ab017e10a1c46a8bc210e80b3290a785060a4d3574fd83772cc0d2eed0df905",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://gorest.co.in/public/v2/users",
+					"protocol": "https",
+					"host": [
+						"gorest",
+						"co",
+						"in"
+					],
+					"path": [
+						"public",
+						"v2",
+						"users"
+					]
+				},
+				"description": "Post запрос для получения пользователя с пустым телом запроса.\n\nСтатус ответа - 422\n\n**Код состояния 422 (HTTP 422 Unprocessable Entity)** обозначает ошибку со стороны пользователя, а не API. Сервер понимает запрос со стороны клиента и может работать с типом содержимого, который ему предоставили. Однако логическая ошибка делает выполнение невозможным.\n\nДля выполнения данного запроса в тело запроса требуется внести определенные данные - \"email\", \"name\", \"gender\", \"status\""
+			},
+			"response": []
+		},
+		{
+			"name": "5. Post raw => json",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "8ab017e10a1c46a8bc210e80b3290a785060a4d3574fd83772cc0d2eed0df905",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Ivan Ivanov\",\r\n    \"email\": \"xinnosippullu-3399@yopmail.com\",\r\n    \"gender\": \"male\",\r\n    \"status\": \"active\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://gorest.co.in/public/v2/users/",
+					"protocol": "https",
+					"host": [
+						"gorest",
+						"co",
+						"in"
+					],
+					"path": [
+						"public",
+						"v2",
+						"users",
+						""
+					]
+				},
+				"description": "5\\. Запрос для создания нового пользователя, используя метод raw => json:\n\n{ \"name\": \"Ivan Ivanov\", \"email\": \"[xinnosippullu-3399@yopmail.com](mailto:xinnosippullu-3399@yopmail.com)\", \"gender\": \"male\", \"status\": \"active\"}"
+			},
+			"response": []
+		},
+		{
+			"name": "6. List New User",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "8ab017e10a1c46a8bc210e80b3290a785060a4d3574fd83772cc0d2eed0df905",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://gorest.co.in/public/v2/users/34971?id=34971",
+					"protocol": "https",
+					"host": [
+						"gorest",
+						"co",
+						"in"
+					],
+					"path": [
+						"public",
+						"v2",
+						"users",
+						"34971"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "34971"
+						}
+					]
+				},
+				"description": "6\\. Получение записи о вновь созданном пользователе (по ID, указанному в теле ответа на запрос POST, которым создан новый пользователь)"
+			},
+			"response": []
+		},
+		{
+			"name": "7. Create 5 new users",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "b18edbc17dc14d9b2deb9f3faacc72982bd17fe40b3e4b31cf43c4b5d3d568bc",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://gorest.co.in/public/v2/users/?email={{email}}&name=Ivan Ivanov&gender=male&status=active",
+					"protocol": "https",
+					"host": [
+						"gorest",
+						"co",
+						"in"
+					],
+					"path": [
+						"public",
+						"v2",
+						"users",
+						""
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "{{email}}"
+						},
+						{
+							"key": "name",
+							"value": "Ivan Ivanov"
+						},
+						{
+							"key": "gender",
+							"value": "male"
+						},
+						{
+							"key": "status",
+							"value": "active"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "поиск по ID",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "b18edbc17dc14d9b2deb9f3faacc72982bd17fe40b3e4b31cf43c4b5d3d568bc",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://gorest.co.in/public/v2/users?id=46381",
+					"protocol": "https",
+					"host": [
+						"gorest",
+						"co",
+						"in"
+					],
+					"path": [
+						"public",
+						"v2",
+						"users"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Ivan Ivanov",
+							"disabled": true
+						},
+						{
+							"key": "email",
+							"value": "tgadsby4@dell.com",
+							"disabled": true
+						},
+						{
+							"key": "id",
+							"value": "46381"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "8. изменение Put",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "b18edbc17dc14d9b2deb9f3faacc72982bd17fe40b3e4b31cf43c4b5d3d568bc",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "https://gorest.co.in/public/v2/users/45331?name=Иван Иванов&email=test@test.ruu",
+					"protocol": "https",
+					"host": [
+						"gorest",
+						"co",
+						"in"
+					],
+					"path": [
+						"public",
+						"v2",
+						"users",
+						"45331"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Иван Иванов"
+						},
+						{
+							"key": "email",
+							"value": "test@test.ruu"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "9. изменение Patch",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "b18edbc17dc14d9b2deb9f3faacc72982bd17fe40b3e4b31cf43c4b5d3d568bc",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "https://gorest.co.in/public/v2/users/45331?email=tgadsby4@dell.com&status=inactive",
+					"protocol": "https",
+					"host": [
+						"gorest",
+						"co",
+						"in"
+					],
+					"path": [
+						"public",
+						"v2",
+						"users",
+						"45331"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "tgadsby4@dell.com"
+						},
+						{
+							"key": "status",
+							"value": "inactive"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "10. Удаление запроса",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "b18edbc17dc14d9b2deb9f3faacc72982bd17fe40b3e4b31cf43c4b5d3d568bc",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://gorest.co.in/public/v2/users/46381",
+					"protocol": "https",
+					"host": [
+						"gorest",
+						"co",
+						"in"
+					],
+					"path": [
+						"public",
+						"v2",
+						"users",
+						"46381"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
